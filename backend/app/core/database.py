@@ -24,6 +24,21 @@ SessionLocal = sessionmaker(
 Base = declarative_base()
 
 
+# Import all models to register them with Base
+# This MUST be done before create_all() is called
+from app.models.database import (  # noqa: F401
+    User,
+    Strategy,
+    Trade,
+    Signal,
+    MarketData,
+    SentimentData,
+    Alert,
+    MLModel,
+    Backtest,
+)
+
+
 def get_db():
     """Dependency to get database session"""
     db = SessionLocal()

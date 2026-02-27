@@ -4,6 +4,7 @@ Application configuration and settings
 from pydantic_settings import BaseSettings
 from typing import List
 import os
+from pathlib import Path
 
 
 class Settings(BaseSettings):
@@ -17,7 +18,7 @@ class Settings(BaseSettings):
     # Database Configuration
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",
-        "postgresql://postgres:password@localhost:5432/cryptovolt"
+        "postgresql://postgres:root@localhost:5432/cryptovolt"
     )
     
     # Security
@@ -45,6 +46,9 @@ class Settings(BaseSettings):
     NEWS_API_KEY: str = os.getenv("NEWS_API_KEY", "")
     REDDIT_CLIENT_ID: str = os.getenv("REDDIT_CLIENT_ID", "")
     REDDIT_CLIENT_SECRET: str = os.getenv("REDDIT_CLIENT_SECRET", "")
+    REDDIT_USER_AGENT: str = os.getenv("REDDIT_USER_AGENT", "CryptoVolt/3.0")
+    USE_FINBERT: bool = os.getenv("USE_FINBERT", "False").lower() == "true"
+    SENTIMENT_CACHE_TTL: int = int(os.getenv("SENTIMENT_CACHE_TTL", "600"))
     
     # Discord
     DISCORD_WEBHOOK_URL: str = os.getenv("DISCORD_WEBHOOK_URL", "")
@@ -64,7 +68,8 @@ class Settings(BaseSettings):
     
     class Config:
         case_sensitive = True
-        env_file = ".env"
+        env_file = str(Path(__file__).parent.parent.parent / ".env")
+        env_file_encoding = "utf-8"
 
 
 settings = Settings()
