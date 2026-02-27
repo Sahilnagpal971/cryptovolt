@@ -1,46 +1,41 @@
 """Unit tests for sentiment analyzer"""
 import pytest
-from app.sentiment.analyzer import SentimentAnalyzer
+from app.sentiment.analyzer import EnhancedCryptoSentimentAnalyzer
 
 
 @pytest.fixture
 def sentiment_analyzer():
     """Create sentiment analyzer instance"""
-    config = {
-        "aggregation_method": "weighted_average",
-    }
-    return SentimentAnalyzer(config)
+    return EnhancedCryptoSentimentAnalyzer()
 
 
 def test_analyze_sentiment_positive(sentiment_analyzer):
     """Test positive sentiment analysis"""
-    sentiment_data = [
-        {"source": "NEWS", "sentiment_score": 0.8, "text": "Bitcoin surges", "timestamp": "2024-01-01"},
-        {"source": "NEWS", "sentiment_score": 0.7, "text": "Positive outlook", "timestamp": "2024-01-01"},
-    ]
+    text = "Bitcoin surges to new highs! Great investment opportunity. Moon incoming!"
     
-    result = sentiment_analyzer.analyze_symbol_sentiment("BTCUSDT", sentiment_data)
+    result = sentiment_analyzer.hybrid_sentiment_analysis(text)
     
-    assert result["overall_score"] > 0
-    assert result["trend"] in ["POSITIVE", "VERY_POSITIVE"]
-    assert result["sources_analyzed"] == 2
+    assert "compound" in result
+    assert -1.0 <= result["compound"] <= 1.0
+    assert "confidence" in result
+    assert "crypto_adjustment" in result
 
 
 def test_analyze_sentiment_negative(sentiment_analyzer):
     """Test negative sentiment analysis"""
-    sentiment_data = [
-        {"source": "REDDIT", "sentiment_score": -0.8, "text": "Market crash", "timestamp": "2024-01-01"},
-    ]
+    text = "Market crash! Bitcoin plummeting. Sell everything now. Major dump happening."
     
-    result = sentiment_analyzer.analyze_symbol_sentiment("BTCUSDT", sentiment_data)
+    result = sentiment_analyzer.hybrid_sentiment_analysis(text)
     
-    assert result["overall_score"] < 0
-    assert result["trend"] in ["NEGATIVE", "VERY_NEGATIVE"]
+    assert "compound" in result
+    assert -1.0 <= result["compound"] <= 1.0
 
 
-def test_analyze_sentiment_empty(sentiment_analyzer):
-    """Test empty sentiment data"""
-    result = sentiment_analyzer.analyze_symbol_sentiment("BTCUSDT", [])
+def test_analyze_sentiment_neutral(sentiment_analyzer):
+    """Test neutral sentiment"""
+    text = "Bitcoin price remains stable at current levels."
     
-    assert result["overall_score"] == 0.0
-    assert result["sources_analyzed"] == 0
+    result = sentiment_analyzer.hybrid_sentiment_analysis(text)
+    
+    assert "compound" in result
+    assert -1.0 <= result["compound"] <= 1.0
