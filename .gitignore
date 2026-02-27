@@ -1,0 +1,98 @@
+# Git ignore for CryptoVolt project
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+.hypothesis/
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+postgres_data/
+redis_data/
+
+# Logs
+logs/
+*.log
+
+# Models and data
+models/
+features/
+data/
+*.joblib
+*.pkl
+*.pth
+*.h5
+
+# Node/Frontend
+node_modules/
+package-lock.json
+yarn.lock
+dist/
+build/
+.next/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+*.exe
+*.dll
+
+# Docker
+.dockerignore
+
+# Misc
+.mypy_cache/
+.dmypy.json
+dmypy.json
+tmp/
+temp/
+*.tmp
