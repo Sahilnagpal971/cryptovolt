@@ -28,7 +28,7 @@ logger = logging.getLogger(__name__)
 # Top 10 cheap, reliable, and future-growing coins (lower price points)
 TOP_10_COINS = {
     'XRP': 'XRPUSDT',      # Ripple - Payment protocol (~$0.50-2.00)
-    'DOGE': 'DOGUSDT',     # Dogecoin - Solid community (~$0.05-0.30)
+    'DOGE': 'DOGEUSDT',    # Dogecoin - Solid community (~$0.05-0.30)
     'ADA': 'ADAUSDT',      # Cardano - PoS blockchain (~$0.40-1.50)
     'MATIC': 'MATICUSDT',  # Polygon - Layer-2 scaling (~$0.40-1.50)
     'VET': 'VETUSDT',      # VeChain - Supply chain (very cheap)
@@ -167,9 +167,9 @@ class BinanceDataFetcher:
         # Remove NaN rows
         df = df.dropna(subset=['open', 'high', 'low', 'close', 'volume'])
         
-        logger.info(f"\n✅ Successfully fetched {len(df):,} unique candles for {symbol}")
-        logger.info(f"   Date range: {df['timestamp'].min()} to {df['timestamp'].max()}")
-        logger.info(f"   Span: {(df['timestamp'].max() - df['timestamp'].min()).days} days")
+        logger.info(f"\n[OK] Successfully fetched {len(df):,} unique candles for {symbol}")
+        logger.info(f"     Date range: {df['timestamp'].min()} to {df['timestamp'].max()}")
+        logger.info(f"     Span: {(df['timestamp'].max() - df['timestamp'].min()).days} days")
         
         return df
     

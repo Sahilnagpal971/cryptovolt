@@ -29,7 +29,7 @@ logger = logging.getLogger(__name__)
 # Top 10 cheap, reliable, and future-growing coins
 TOP_10_COINS = {
     'XRP': 'XRPUSDT',      # Ripple - Payment protocol
-    'DOGE': 'DOGUSDT',     # Dogecoin - Community favorite
+    'DOGE': 'DOGEUSDT',    # Dogecoin - Community favorite
     'ADA': 'ADAUSDT',      # Cardano - Sustainable blockchain
     'MATIC': 'MATICUSDT',  # Polygon - Ethereum scaling
     'VET': 'VETUSDT',      # VeChain - Supply chain leader
