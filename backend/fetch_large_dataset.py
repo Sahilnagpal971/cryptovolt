@@ -25,18 +25,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Top 10 reliable, cheaper, and future-growing coins
+# Top 10 cheap, reliable, and future-growing coins (lower price points)
 TOP_10_COINS = {
-    'BTC': 'BTCUSDT',      # Bitcoin - Market leader
-    'ETH': 'ETHUSDT',      # Ethereum - Smart contracts
-    'SOL': 'SOLUSDT',      # Solana - High-speed
-    'XRP': 'XRPUSDT',      # Ripple - Payment protocol
-    'ADA': 'ADAUSDT',      # Cardano - PoS blockchain
-    'AVAX': 'AVAXUSDT',    # Avalanche - Scalable
-    'MATIC': 'MATICUSDT',  # Polygon - Layer-2
-    'LINK': 'LINKUSDT',    # Chainlink - Oracles
-    'UNI': 'UNIUSDT',      # Uniswap - DeFi
-    'DOT': 'DOTUSDT'       # Polkadot - Multi-chain
+    'XRP': 'XRPUSDT',      # Ripple - Payment protocol (~$0.50-2.00)
+    'DOGE': 'DOGUSDT',     # Dogecoin - Solid community (~$0.05-0.30)
+    'ADA': 'ADAUSDT',      # Cardano - PoS blockchain (~$0.40-1.50)
+    'MATIC': 'MATICUSDT',  # Polygon - Layer-2 scaling (~$0.40-1.50)
+    'VET': 'VETUSDT',      # VeChain - Supply chain (very cheap)
+    'HBAR': 'HBARUSDT',    # Hedera - Fast, cheap
+    'ALGO': 'ALGOUSDT',    # Algorand - Fast blockchain
+    'ATOM': 'ATOMUSDT',    # Cosmos - Multi-chain ecosystem
+    'NEAR': 'NEARUSDT',    # Near Protocol - Growing layer-1
+    'ARB': 'ARBUSDT'       # Arbitrum - Layer-2, recent launch
 }
 
 class BinanceDataFetcher:

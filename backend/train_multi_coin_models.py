@@ -26,18 +26,18 @@ logging.basicConfig(
 )
 logger = logging.getLogger(__name__)
 
-# Top 10 coins to train models for
+# Top 10 cheap, reliable, and future-growing coins
 TOP_10_COINS = {
-    'BTC': 'BTCUSDT',
-    'ETH': 'ETHUSDT',
-    'SOL': 'SOLUSDT',
-    'XRP': 'XRPUSDT',
-    'ADA': 'ADAUSDT',
-    'AVAX': 'AVAXUSDT',
-    'MATIC': 'MATICUSDT',
-    'LINK': 'LINKUSDT',
-    'UNI': 'UNIUSDT',
-    'DOT': 'DOTUSDT'
+    'XRP': 'XRPUSDT',      # Ripple - Payment protocol
+    'DOGE': 'DOGUSDT',     # Dogecoin - Community favorite
+    'ADA': 'ADAUSDT',      # Cardano - Sustainable blockchain
+    'MATIC': 'MATICUSDT',  # Polygon - Ethereum scaling
+    'VET': 'VETUSDT',      # VeChain - Supply chain leader
+    'HBAR': 'HBARUSDT',    # Hedera - Enterprise blockchain
+    'ALGO': 'ALGOUSDT',    # Algorand - Fast & scalable
+    'ATOM': 'ATOMUSDT',    # Cosmos - Interoperability hub
+    'NEAR': 'NEARUSDT',    # Near Protocol - Developer friendly
+    'ARB': 'ARBUSDT'       # Arbitrum - Layer-2 leader
 }
 
 
