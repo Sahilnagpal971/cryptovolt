@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 from app.core.config import settings
 from app.api import routes
 from app.core.database import engine, Base
+from app.core.init_db import init_db, verify_database_connection
 
 # Configure logging
 logging.basicConfig(
@@ -27,7 +28,12 @@ async def lifespan(app: FastAPI):
     """
     # Startup event
     logger.info("Starting CryptoVolt API Server")
-    Base.metadata.create_all(bind=engine)
+    
+    # Verify database connection and initialize
+    if verify_database_connection():
+        init_db()
+    else:
+        logger.error("⚠ Database connection failed - some features may not work")
     
     yield
     

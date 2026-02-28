@@ -28,14 +28,13 @@ Base = declarative_base()
 # This MUST be done before create_all() is called
 from app.models.database import (  # noqa: F401
     User,
-    Strategy,
+    TradingStrategy,
     Trade,
     Signal,
     MarketData,
     SentimentData,
     Alert,
-    MLModel,
-    Backtest,
+    Model,
 )
 
 

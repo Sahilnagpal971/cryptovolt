@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     # Database Configuration
     DATABASE_URL: str = os.getenv(
         "DATABASE_URL",
-        "postgresql://postgres:root@localhost:5432/cryptovolt"
+        "postgresql://postgres:password@localhost:5432/cryptovolt"
     )
     
     # Security
@@ -70,6 +70,7 @@ class Settings(BaseSettings):
         case_sensitive = True
         env_file = str(Path(__file__).parent.parent.parent / ".env")
         env_file_encoding = "utf-8"
+        extra = "ignore"  # Ignore extra environment variables
 
 
 settings = Settings()
