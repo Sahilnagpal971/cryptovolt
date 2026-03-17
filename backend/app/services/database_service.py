@@ -37,9 +37,10 @@ class DatabaseService:
     def read(db: Session, model_class: Type[T], id: int) -> Optional[T]:
         """Read a record by ID"""
         try:
-            return db.query(model_class).filter(
-                model_class.__table__.c.get(f"{model_class.__tablename__[:-1]}_id") == id
-            ).first()
+            pk = list(model_class.__table__.primary_key.columns)
+            if not pk:
+                return None
+            return db.query(model_class).filter(pk[0] == id).first()
         except Exception as e:
             logger.error(f"Error reading {model_class.__name__}: {str(e)}")
             return None
@@ -48,9 +49,10 @@ class DatabaseService:
     def update(db: Session, model_class: Type[T], id: int, **kwargs) -> Optional[T]:
         """Update a record"""
         try:
-            db_object = db.query(model_class).filter(
-                model_class.__table__.c.get(f"{model_class.__tablename__[:-1]}_id") == id
-            ).first()
+            pk = list(model_class.__table__.primary_key.columns)
+            if not pk:
+                return None
+            db_object = db.query(model_class).filter(pk[0] == id).first()
             
             if db_object:
                 for key, value in kwargs.items():
@@ -69,9 +71,10 @@ class DatabaseService:
     def delete(db: Session, model_class: Type[T], id: int) -> bool:
         """Delete a record"""
         try:
-            db_object = db.query(model_class).filter(
-                model_class.__table__.c.get(f"{model_class.__tablename__[:-1]}_id") == id
-            ).first()
+            pk = list(model_class.__table__.primary_key.columns)
+            if not pk:
+                return False
+            db_object = db.query(model_class).filter(pk[0] == id).first()
             
             if db_object:
                 db.delete(db_object)

@@ -5,6 +5,7 @@ import logging
 from sqlalchemy import text, inspect
 from app.core.database import engine, Base, SessionLocal
 from app.models.database import User, TradingStrategy, MarketData, SentimentData, Signal, Trade, Model, Alert
+from app.core.security import hash_password
 
 logger = logging.getLogger(__name__)
 
@@ -64,11 +65,11 @@ def create_default_admin():
         
         if not existing_user:
             logger.info("Creating default admin user...")
-            # In production, use proper password hashing
+            # In production, use proper password hashing + secret management
             admin_user = User(
                 username="admin",
                 email="admin@cryptovolt.local",
-                password_hash="$2b$12$LQv3c1yqBWVHxkd0LHAkCOYz6TtxMQJqhN8/LewY5YmMxSUvar.OC",  # password: admin123
+                password_hash=hash_password("admin123"),
                 is_active=True
             )
             db.add(admin_user)
